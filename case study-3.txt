@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-commerce</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .banner img {
+            width: 100%;
+            display: block;
+        }
+
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .product {
+            width: 200px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .social-links img {
+            width: 30px;
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Cart (<span id="cart-count">0</span>)</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <header class="banner">
+        <img src="banner.jpg" alt="Promotional Banner">
+    </header>
+
+    <section class="product-grid">
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>$29.99</p>
+            <button class="add-to-cart" data-name="Product 1" data-price="29.99">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>$49.99</p>
+            <button class="add-to-cart" data-name="Product 2" data-price="49.99">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="product3.jpg" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>$19.99</p>
+            <button class="add-to-cart" data-name="Product 3" data-price="19.99">Add to Cart</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><img src="facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="instagram.png" alt="Instagram"></a>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const name = this.dataset.name;
+                const price = parseFloat(this.dataset.price);
+
+                cart.push({ name, price });
+                updateCartCount();
+            });
+        });
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+    </script>
+</body>
+</html>
